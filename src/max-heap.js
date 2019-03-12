@@ -7,7 +7,9 @@ class MaxHeap {
 	}
 
 	push(data, priority) {
-
+		var newNode = new Node(data, priority);
+		this.insertNode(newNode);
+		this.shiftNodeUp(newNode)
 	}
 
 	pop() {
@@ -23,15 +25,25 @@ class MaxHeap {
 	}
 
 	size() {
+		let depthOf = object => {
+			if (object === null) return 0;
 
+			var leftNode = depthOf(object.left),
+				rightNode = depthOf(object.right);
+
+			return leftNode + rightNode + 1;
+		};
+
+		return depthOf(this.root)
 	}
 
 	isEmpty() {
-
+		return !this.size();
 	}
 
 	clear() {
-
+		this.root = null;
+		this.parentNodes = []
 	}
 
 	insertNode(node) {
